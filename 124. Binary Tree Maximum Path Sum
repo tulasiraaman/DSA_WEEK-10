@@ -1,0 +1,18 @@
+class Solution {
+    private int max = Integer.MIN_VALUE;
+
+    public int maxPathSum(TreeNode root) {
+        height(root);
+        return max;
+    }
+
+    private int height(TreeNode root){
+        if(root == null) return 0;
+
+        int left = Math.max(0, height(root.left));
+        int right = Math.max(0, height(root.right));
+
+        max = Math.max(max, root.val + left + right);
+        return root.val + Math.max(left, right);
+    }
+}
