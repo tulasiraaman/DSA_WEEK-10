@@ -1,0 +1,19 @@
+class Solution {
+    private int result = 0;
+    private int count = 1;
+
+    public int kthSmallest(TreeNode root, int k) {
+        inOrder(root, k);
+        return result;
+    }
+
+    private void inOrder(TreeNode root, int k){
+        if(root == null || count > k) return;
+
+        inOrder(root.left, k);
+        if(count == k) result = root.val;
+        count++;
+        inOrder(root.right, k);
+    }
+}
+// TC - O(N) or O(K), O(N)
